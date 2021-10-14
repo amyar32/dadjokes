@@ -38,7 +38,7 @@
       </p>
     </div>
 
-    <div class="flex space-x-6">
+    <div class="flex flex-col sm:flex-row space-y-6 sm:space-x-6 sm:space-y-0">
       <router-link to="/en"
         ><main-button color="red" title="english"></main-button
       ></router-link>
