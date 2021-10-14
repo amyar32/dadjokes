@@ -1,6 +1,9 @@
-# Vue 3 + Vite
+# Dad Jokes / Jokes Bapack-bapack
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+App cuman buat test yang katanya lightning fast HMR by using Vite as your bundler.
+Vue 3 + Vite 
+
+Live Demo - https://dadjokes-beige.vercel.app/
 
 ## Recommended IDE Setup
 
