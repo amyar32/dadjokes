@@ -160,10 +160,10 @@ onMounted(() => {
 function speakJoke() {
   console.log(voiceList);
   const englishVoice = voiceList.value.filter((voice) =>
-    voice.name.includes("English")
+    voice.lang.includes("en")
   );
   const indoVoice = voiceList.value.filter((voice) =>
-    voice.name.includes("Indonesia")
+    voice.lang.includes("id")
   );
   speech.text = props.joke;
   if (route.path === "/en") {
