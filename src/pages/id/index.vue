@@ -48,7 +48,7 @@ const jokeData = ref([
   "Jus apa yang turun dari langit? Justru itu yang aku kagak tau..he..he.",
   "Apa bukti wortel baik untuk kesehatan mata? Pernah lihat kelinci pakai kacamata?",
   "Apa bahasa Indianya bumbu dapur? Tumbar miri jahe.",
-  "Apa ayang badannya hijau, kepalanya merah, jalannya mundur?Obat nyamuk bakar.",
+  "Apa yang badannya hijau, kepalanya merah, jalannya mundur? Obat nyamuk bakar.",
 ]);
 
 const isLoading = ref(false);
