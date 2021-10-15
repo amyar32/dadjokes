@@ -150,9 +150,15 @@ const speech = new window.SpeechSynthesisUtterance();
 function speakJoke() {
   speech.text = props.joke;
   if (route.path === "/en") {
-    speech.voice = voiceList[0];
+    const englishVoice = voiceList.filter((voice) =>
+      voice.name.includes("English")
+    );
+    speech.voice = englishVoice[0];
   } else {
-    speech.voice = voiceList[3];
+    const indoVoice = voiceList.filter((voice) =>
+      voice.name.includes("Indonesia")
+    );
+    speech.voice = indoVoice[0];
   }
 
   synth.speak(speech);
