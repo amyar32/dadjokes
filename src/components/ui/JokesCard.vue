@@ -51,6 +51,7 @@
             rounded-full
             hover:shadow-lg
           "
+          @click="stopSpeak"
         ></div
       ></router-link>
       <div
@@ -77,7 +78,10 @@
           rounded-full
           hover:shadow-lg
         "
-        @click="fetchJoke"
+        @click="
+          fetchJoke();
+          stopSpeak();
+        "
       ></div>
     </div>
     <transition
@@ -108,7 +112,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import useClipboard from "vue-clipboard3";
 import { useRoute } from "vue-router";
 
@@ -126,7 +130,7 @@ const isCopied = ref(false);
 
 const fetchJoke = () => {
   emit("fetch-joke");
-  synth.cancel();
+
   toggleIsCopied(false);
 };
 
@@ -144,23 +148,33 @@ const copy = async () => {
 };
 
 const synth = window.speechSynthesis;
-const voiceList = synth.getVoices();
+const voiceList = ref([]);
 const speech = new window.SpeechSynthesisUtterance();
 
+onMounted(() => {
+  setTimeout(() => {
+    voiceList.value = synth.getVoices();
+  }, 500);
+});
+
 function speakJoke() {
+  console.log(voiceList);
+  const englishVoice = voiceList.value.filter((voice) =>
+    voice.name.includes("English")
+  );
+  const indoVoice = voiceList.value.filter((voice) =>
+    voice.name.includes("Indonesia")
+  );
   speech.text = props.joke;
   if (route.path === "/en") {
-    const englishVoice = voiceList.filter((voice) =>
-      voice.name.includes("English")
-    );
     speech.voice = englishVoice[0];
   } else {
-    const indoVoice = voiceList.filter((voice) =>
-      voice.name.includes("Indonesia")
-    );
     speech.voice = indoVoice[0];
   }
-
   synth.speak(speech);
+}
+
+function stopSpeak() {
+  synth.cancel();
 }
 </script>
