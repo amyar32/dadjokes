@@ -1,5 +1,5 @@
 <template>
-  <jokes-card joke="Acan aya jokes na, sabar"></jokes-card>
+  <jokes-card joke="Acan aya tatarucingana, sabar"></jokes-card>
 </template>
 
 <script setup>
