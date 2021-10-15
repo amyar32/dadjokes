@@ -59,6 +59,7 @@
       :class="{
         'bg-red-600': props.color === 'red',
         'bg-purple-600': props.color === 'purple',
+        'bg-green-600': props.color === 'green',
       }"
     ></div>
   </div>

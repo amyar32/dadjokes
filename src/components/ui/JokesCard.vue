@@ -56,6 +56,19 @@
       <div
         class="
           transition-all
+          bg-yellow-500
+          hover:bg-yellow-400
+          w-9
+          h-9
+          cursor-pointer
+          rounded-full
+          hover:shadow-lg
+        "
+        @click="speakJoke"
+      ></div>
+      <div
+        class="
+          transition-all
           bg-green-500
           hover:bg-green-400
           w-9
@@ -97,6 +110,9 @@
 <script setup>
 import { ref } from "vue";
 import useClipboard from "vue-clipboard3";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 const props = defineProps({
   joke: String,
@@ -110,6 +126,7 @@ const isCopied = ref(false);
 
 const fetchJoke = () => {
   emit("fetch-joke");
+  synth.cancel();
   toggleIsCopied(false);
 };
 
@@ -125,4 +142,19 @@ const copy = async () => {
     console.error(e);
   }
 };
+
+const synth = window.speechSynthesis;
+const voiceList = synth.getVoices();
+const speech = new window.SpeechSynthesisUtterance();
+
+function speakJoke() {
+  speech.text = props.joke;
+  if (route.path === "/en") {
+    speech.voice = voiceList[0];
+  } else {
+    speech.voice = voiceList[3];
+  }
+
+  synth.speak(speech);
+}
 </script>
