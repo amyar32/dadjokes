@@ -134,7 +134,7 @@ const fetchJoke = () => {
   toggleIsCopied(false);
 };
 
-const toggleIsCopied = async (status) => {
+const toggleIsCopied = (status) => {
   isCopied.value = status;
 };
 
@@ -158,7 +158,6 @@ onMounted(() => {
 });
 
 function speakJoke() {
-  console.log(voiceList);
   const englishVoice = voiceList.value.filter((voice) =>
     voice.lang.includes("en")
   );
