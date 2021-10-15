@@ -32,10 +32,6 @@
       >
         DADJOKES
       </h1>
-      <p class="dark:text-gray-500 italic">
-        by <a href="https://amyar.me" target="_blank">amyar</a> and
-        <a href="https://icanhazdadjoke.com" target="_blank">brett api</a>
-      </p>
     </div>
 
     <div class="flex flex-col sm:flex-row space-y-6 sm:space-x-6 sm:space-y-0">
@@ -45,7 +41,18 @@
       <router-link to="/id"
         ><main-button color="purple" title="indonesia"></main-button
       ></router-link>
+      <router-link to="/su"
+        ><main-button color="green" title="sundanese"></main-button
+      ></router-link>
     </div>
+    <p class="dark:text-gray-500 text-xs italic">
+      by
+      <a class="underline" href="https://amyar.me" target="_blank">amyar</a> and
+      <a class="underline" href="https://icanhazdadjoke.com" target="_blank"
+        >brett</a
+      >
+      for english api
+    </p>
   </div>
 </template>
 
