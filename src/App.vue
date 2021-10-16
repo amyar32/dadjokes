@@ -9,7 +9,7 @@
           leave-active-class="transition-all"
           leave-from-class="opacity-100 scale-100"
           leave-to-class="opacity-0"
-          mode="in-out"
+          mode="out-in"
         >
           <component :is="slotProps.Component"></component>
         </transition>
