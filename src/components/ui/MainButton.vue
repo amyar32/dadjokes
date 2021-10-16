@@ -11,8 +11,10 @@
       flex-col
       bg-white
       dark:bg-gray-800
-      w-52
-      h-20
+      w-56
+      h-16
+      sm:w-44 sm:h-20
+      md:w-56
       hover:shadow-lg hover:bg-gray-200
       dark:hover:bg-gray-700
     "
@@ -58,7 +60,7 @@
       class="transition-all h-2 w-full group-hover:h-3"
       :class="{
         'bg-red-600': props.color === 'red',
-        'bg-purple-600': props.color === 'purple',
+        'bg-yellow-600': props.color === 'yellow',
         'bg-green-600': props.color === 'green',
       }"
     ></div>
