@@ -91,23 +91,12 @@
       leave-active-class="transition-all duration-500"
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0"
-      ><div
+      ><popup
         v-if="isCopied"
-        class="
-          fixed
-          bottom-10
-          left-10
-          bg-green-600
-          py-3
-          px-6
-          rounded-lg
-          text-white
-          shadow-lg
-        "
-      >
-        Copied to clipboard!
-      </div></transition
-    >
+        message="Copied to clipboard!"
+        color="green"
+      ></popup
+    ></transition>
   </div>
 </template>
 
@@ -115,6 +104,7 @@
 import { onMounted, ref } from "vue";
 import useClipboard from "vue-clipboard3";
 import { useRoute } from "vue-router";
+import Popup from "./Popup.vue";
 
 const route = useRoute();
 
