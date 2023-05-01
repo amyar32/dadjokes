@@ -1,88 +1,46 @@
 <template>
   <div
-    class="
-      flex flex-col
-      justify-center
-      items-center
-      w-full
-      h-screen
-      space-y-7
-      px-20
-    "
+    class="flex flex-col justify-center items-center w-full h-screen space-y-7"
   >
     <div
       @click="copy"
-      class="
-        transition-all
-        dark:text-white
-        bg-white
-        dark:bg-gray-800
-        cursor-pointer
-        p-4
-        rounded-xl
-        hover:shadow-lg hover:bg-gray-200
-        dark:hover:bg-gray-700
-      "
+      class="transition-all dark:text-white bg-white dark:bg-gray-800 cursor-pointer p-4
+        rounded-xl hover:shadow-lg hover:bg-gray-200 dark:hover:bg-gray-700"
     >
-      <div v-if="props.isLoading" class="flex justify-center items-center">
+      <div
+        v-if="props.isLoading"
+        class="flex justify-center items-center"
+      >
         <div
-          class="
-            animate-spin
-            rounded-full
-            h-6
-            w-6
-            border-b-2 border-gray-900
-            dark:border-white
-          "
-        ></div>
+          class="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900 dark:border-white"
+        />
       </div>
-      <p v-else>{{ props.joke }}</p>
+      <p v-else>
+        {{ props.joke }}
+      </p>
     </div>
     <div class="flex space-x-5">
       <router-link to="/">
         <div
-          class="
-            transition-all
-            bg-red-500
-            hover:bg-red-400
-            w-9
-            h-9
-            cursor-pointer
-            rounded-full
-            hover:shadow-lg
-          "
+          class="transition-all bg-red-500 hover:bg-red-400 w-9 h-9 cursor-pointer rounded-full
+          hover:shadow-lg"
           @click="stopSpeak"
-        ></div
-      ></router-link>
+        />
+      </router-link>
       <div
-        class="
-          transition-all
-          bg-yellow-500
-          hover:bg-yellow-400
-          w-9
-          h-9
-          cursor-pointer
-          rounded-full
-          hover:shadow-lg
-        "
+        class="transition-all bg-yellow-500 hover:bg-yellow-400 w-9 h-9 cursor-pointer rounded-full
+        hover:shadow-lg"
         @click="speakJoke"
-      ></div>
+      />
       <div
         class="
-          transition-all
-          bg-green-500
-          hover:bg-green-400
-          w-9
-          h-9
-          cursor-pointer
-          rounded-full
-          hover:shadow-lg
-        "
+          transition-all bg-green-500 hover:bg-green-400 w-9 h-9 cursor-pointer rounded-full
+          hover:shadow-lg"
         @click="
           fetchJoke();
           stopSpeak();
         "
-      ></div>
+      />
     </div>
     <transition
       enter-active-class="transition-all"
@@ -91,41 +49,49 @@
       leave-active-class="transition-all duration-500"
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0"
-      ><popup
+    >
+      <popup
         v-if="isCopied"
         message="Copied to clipboard!"
         color="green"
-      ></popup
-    ></transition>
+      />
+    </transition>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import useClipboard from "vue-clipboard3";
-import { useRoute } from "vue-router";
-import Popup from "./Popup.vue";
+import { onMounted, ref } from 'vue';
+import useClipboard from 'vue-clipboard3';
+import { useRoute } from 'vue-router';
+import Popup from './Popup.vue';
 
 const route = useRoute();
 
 const props = defineProps({
-  joke: String,
-  isLoading: Boolean,
+  joke: {
+    type: String,
+    default: '',
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
 });
-const emit = defineEmits(["fetch-joke"]);
+
+const emit = defineEmits(['fetch-joke']);
 
 const { toClipboard } = useClipboard();
 
 const isCopied = ref(false);
 
-const fetchJoke = () => {
-  emit("fetch-joke");
-
-  toggleIsCopied(false);
-};
-
 const toggleIsCopied = (status) => {
   isCopied.value = status;
+};
+
+const fetchJoke = () => {
+  emit('fetch-joke');
+
+  toggleIsCopied(false);
 };
 
 const copy = async () => {
@@ -148,14 +114,12 @@ onMounted(() => {
 });
 
 function speakJoke() {
-  const englishVoice = voiceList.value.filter((voice) =>
-    voice.lang.includes("en")
-  );
-  const indoVoice = voiceList.value.filter((voice) =>
-    voice.lang.includes("id")
-  );
+  if (synth.speaking) return;
+
+  const englishVoice = voiceList.value.filter((voice) => voice.lang.includes('en'));
+  const indoVoice = voiceList.value.filter((voice) => voice.lang.includes('id'));
   speech.text = props.joke;
-  if (route.path === "/en") {
+  if (route.path === '/en') {
     speech.voice = englishVoice[0];
   } else {
     speech.voice = indoVoice[0];

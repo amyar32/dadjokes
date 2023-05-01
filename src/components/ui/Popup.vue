@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed bottom-10 left-10 py-3 px-6 rounded-lg text-white shadow-lg"
+    class="fixed bottom-10 left-10 py-3 px-6 rounded-lg text-white shadow-lg z-10"
     :class="{
       'bg-green-600': props.color === 'green',
       'bg-red-600': props.color === 'red',
