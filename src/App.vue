@@ -20,9 +20,12 @@
 </template>
 
 <script setup>
+import { inject } from '@vercel/analytics';
 import { ref } from 'vue';
 import BackgroundBase from './components/ui/BackgroundBase.vue';
 import DarkModeToggler from './components/ui/DarkModeToggler.vue';
+
+inject();
 
 const isDarkMode = ref(false);
 
