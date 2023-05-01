@@ -3,23 +3,23 @@
     :joke="joke"
     :is-loading="isLoading"
     @fetch-joke="getJoke"
-  ></jokes-card>
+  />
 </template>
 
 <script setup>
-import { ref } from "vue";
-import axios from "axios";
-import JokesCard from "../../components/ui/JokesCard.vue";
+import { ref } from 'vue';
+import axios from 'axios';
+import JokesCard from '../../components/ui/JokesCard.vue';
 
-const joke = ref("");
+const joke = ref('');
 const isLoading = ref(false);
 
 const getJoke = async () => {
   isLoading.value = true;
   await axios
-    .get("https://icanhazdadjoke.com/", {
+    .get('https://icanhazdadjoke.com/', {
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json',
       },
     })
     .then((data) => {
